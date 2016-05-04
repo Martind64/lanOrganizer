@@ -31,6 +31,13 @@ app.use(morgan('dev'));
 
 
 // ROUTES
+//------------------------------------
+// AUTHENTICATION ROUTE
+var authenticationRoutes = require('./app/routes/authentication')(app, express);
+app.use('/api', authenticationRoutes);
+
+
+// USER ROUTES
 var userRoutes = require('./app/routes/user')(app, express);
 app.use('/api', userRoutes);
 
