@@ -1,1 +1,38 @@
+// Require config file
 var config = require('./config');
+
+// LOAD THE PACKAGES
+var express 		= require('express');
+var app		 		= express();
+var bodyParser		= require('body-parser');
+var morgan 			= require('morgan');
+var mongoose 		= require('mongoose');
+var path 			= require('path');
+
+// Digest request body information
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// connect to the database
+mongoose.connect(config.database);
+
+// Handle CORS requests
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POsT');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, \ Authorization');
+	next();
+})
+
+app.use(morgan('dev'));
+
+// static files location
+// app.use(express.static(__dirname + '/public'));
+
+
+// ROUTES
+var userRoutes = require('./app/routes/user')(app, express);
+app.use('/api', userRoutes);
+
+app.listen(config.port);
+console.log('Server started at port ' + config.port);
