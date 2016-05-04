@@ -58,6 +58,7 @@ module.exports = function(app, express)
 				if(req.body.name) user.name = req.body.name;
 				if(req.body.username) user.username = req.body.username;
 				if(req.body.password) user.password = req.body.password;
+				if(req.body.role) user.role = req.body.role;
 
 				// save the user
 				user.save(function(err)
@@ -81,6 +82,7 @@ module.exports = function(app, express)
 				res.json({ message: 'the user has been deleted'});
 			});
 		});
+
 
 		return userRouter;
 }
