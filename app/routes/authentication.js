@@ -50,7 +50,7 @@ module.exports = function(app, express)
 					// create a token
 					var token = jwt.sign(user, secret, 
 					{
-						expiresInMinutes: 1440 // 24 hours
+						expiresIn: 2000
 					});
 
 					// return the information including token as JSOn
