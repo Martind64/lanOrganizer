@@ -20,12 +20,32 @@ angular.module('app.routes', ['ngRoute'])
 		})
 
 
-		//user events
+		//paticipant events
 	.when('/events', {
 			templateUrl : 'app/components/participant/views/all.html',
 				controller : 'eventController',
 				controllerAs : 'event'
 		})
+
+	.when('/myevents', {
+			templateUrl : 'app/components/participant/views/my.html',
+				controller : 'eventController',
+				controllerAs : 'event'
+		})
+
+	.when('/event/:event_id', {
+			templateUrl : 'app/components/participant/views/single.html',
+				controller : 'eventController',
+				controllerAs : 'event'
+		})
+
+
+	//participant profile
+	.when('/profile/:participant_id', {
+		templateUrl : 'app/components/participant/views/profile.html',
+			controller : 'profileController',
+			controllerAs: 'profile'
+	})
 
 	
 
