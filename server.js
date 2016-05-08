@@ -41,6 +41,9 @@ app.use('/api', authenticationRoutes);
 var userRoutes = require('./app/routes/user')(app, express);
 app.use('/api', userRoutes);
 
+// EVENT ROUTES
+var eventRoutes = require('./app/routes/event')(app, express);
+app.use('/', eventRoutes);
 
 // MAIN CATCHCALL ROUTE ---------
 app.get('*', function(req, res) {

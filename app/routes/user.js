@@ -18,7 +18,7 @@ module.exports = function(app, express)
 			user.psu		= req.body.psu;
 			user.cpu		= req.body.cpu;
 			user.gpu		= req.body.gpu;
-			user.role		= 'ROLE_USER'
+			user.role		= 'ROLE_USER';
 
 			user.save(function(err)
 			{
@@ -54,7 +54,7 @@ module.exports = function(app, express)
 		// update the user on the specified userId
 		.put(function(req, res)
 		{
-			User.findById(req.params.user_i, function(err, user)
+			User.findById(req.params.user_id, function(err, user)
 			{
 				if(err) res.send(err);
 
