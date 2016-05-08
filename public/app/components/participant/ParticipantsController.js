@@ -1,38 +1,38 @@
 angular.module('ParticipantsController', ['ParticipantsService'])
 	
 
-	.controller('eventController', function(pevent){
+	.controller('eventController', function(Pevent){
 		var vm = this;
 
 
-		pevent.all()
+		Pevent.all()
 			.success(function(data) {
 				vm.events = data
 			});
 	})
 
-	.controller('MyeventController', function($routeParams, pevent) {
+	.controller('MyeventController', function($routeParams, Pevent) {
 		var vm = this;
 
-		pevent.MyEvents($routeParams.event_id)
+		Pevent.MyEvents($routeParams.event_id)
 				.success(function(data) {
 					vm.events = data;
 				});
 	})
 
-	.controller('SingleeventController', function($routeParams, pevent) {
+	.controller('SingleeventController', function($routeParams, Pevent) {
 		var vm = this;
 
-		pevent.get($routeParams.event_id)
+		Pevent.get($routeParams.event_id)
 			.success(function(data) {
 				vm.eventdata = data;
 			});
 	})
 
-	.controller('profileController', function($routeParams, participant) {
+	.controller('profileController', function($routeParams, Pevent) {
 		var vm = this;
 
-		participant.getParticipant($routeParams.participant_id)
+		Pevent.getParticipant($routeParams.participant_id)
 			.success(function(data) {
 				vm.participant = data;
 			});
