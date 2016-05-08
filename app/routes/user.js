@@ -15,6 +15,9 @@ module.exports = function(app, express)
 			user.name 		= req.body.name;
 			user.username 	= req.body.username;
 			user.password	= req.body.password;
+			user.psu		= req.body.psu;
+			user.cpu		= req.body.cpu;
+			user.gpu		= req.body.gpu;
 			user.role		= 'ROLE_USER'
 
 			user.save(function(err)
@@ -58,6 +61,9 @@ module.exports = function(app, express)
 				if(req.body.name) user.name = req.body.name;
 				if(req.body.username) user.username = req.body.username;
 				if(req.body.password) user.password = req.body.password;
+				if(req.body.psu) user.psu = req.body.psu;
+				if(req.body.cpu) user.cpu = req.body.cpu;
+				if(req.body.gpu) user.gpu = req.body.gpu;
 				if(req.body.role) user.role = req.body.role;
 
 				// save the user

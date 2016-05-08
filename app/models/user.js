@@ -9,6 +9,9 @@ var UserSchema = new Schema({
 	name: { type: String, required: true },
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
+	psu: String,	
+	gpu: String,
+	cpu: String,
 	role: { type: String, required: true }
 });
 
