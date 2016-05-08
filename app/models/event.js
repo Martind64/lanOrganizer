@@ -5,9 +5,9 @@ var bcrypt		= require('bcrypt-nodejs')
 
 // EVENT SCHEMA
 var EventSchema = new Schema({
-	name:
-	address:
-	description:
+	name: String.
+	address: String, 
+	description: text,
 });
 
 
