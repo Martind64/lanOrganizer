@@ -1,5 +1,6 @@
 // require the vent model
 var Event = require('../models/event');
+var MyEvent = require('../models/user_to_event');
 
 module.exports = function(app, express)
 {
@@ -31,6 +32,17 @@ module.exports = function(app, express)
 				if(err) res.send(err);
 
 				// return the events
+				res.json(events);
+			});
+		});
+
+
+		//returning all events for a user
+	eventRouter.route('/events/myevents/:user_id')
+		.get(function(req, res) {
+			Event.find({'user_id' : req.params.user_id}, function(err, events) {
+				if (err) res.send(err);
+
 				res.json(events);
 			});
 		});
