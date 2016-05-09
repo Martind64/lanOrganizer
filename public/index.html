@@ -21,29 +21,42 @@
 
 	<!-- Controllers -->	
 	<script src="app/components/participant/ParticipantsController.js"></script>
+	<script src="app/components/user/userCtrl.js"></script>
+	<script src="app/components/auth/mainCtrl.js"></script>
 
 	<!-- Services  -->
 	<script src="app/components/participant/ParticipantsService.js"></script>
+	<script src="app/components/auth/authService.js"></script>
+	<script src="app/components/user/userService.js"></script>
 	
 
 	<!-- main Angular app files -->
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
 
-<header>
-	<ng-include src="'app/shared/nav.html'"/>
-	
-</header>
-
-
 
 </head>
-<body ng-app="LanOrganizer">
 
+
+
+
+<body ng-app="LanOrganizer" ng-controller="mainController as main">
+
+
+<header ng-if="main.user.data.role=='user'">
+	<ng-include src="'app/shared/nav.html'"/>
+</header>
+
+<header ng-if="main.user.data.role=='admin'">
+	<ng-include src="'app/shared/navadmin.html'"/>
+</header>
+
+{{ main.user.data.role }}
 
 <main class="container">
 	<!-- ANGULAR VIEWS -->
 	<div ng-view></div>
+	
 </main>
 
 </body>

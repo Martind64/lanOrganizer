@@ -11,9 +11,25 @@ angular.module('ParticipantsService', [])
 		};
 
 
+		pfactory.create = function(eventData) {
+			return $http.post('/api/events', eventData);
+		};
+
+		pfactory.update = function(id, eventData) {
+			return $http.put('/api/events/' + id, eventData);
+		};
+
+		pfactory.delete = function(id) {
+			return $http.delete('/api/events/' + id);
+		};
+
+		pfactory.signup = function(userid, eventid) {
+			return $http.post('/api/events/signup/' + eventid + '/' + userid);
+		};
+
 		//gets my events
 		pfactory.MyEvents = function(userid){
-			return $http.get('/events/myevents/' + userid);
+			return $http.get('/api/events/myevents/' + userid);
 		};
 
 		//get a single event

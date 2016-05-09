@@ -19,7 +19,7 @@ mongoose.connect(config.database);
 // Handle CORS requests
 app.use(function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POsT');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, \ Authorization');
 	next();
 })
@@ -34,7 +34,7 @@ app.use(morgan('dev'));
 //------------------------------------
 // AUTHENTICATION ROUTE
 var authenticationRoutes = require('./app/routes/authentication')(app, express);
-//app.use('/api', authenticationRoutes);
+app.use('/api', authenticationRoutes);
 
 
 // USER ROUTES
@@ -43,7 +43,13 @@ app.use('/api', userRoutes);
 
 // EVENT ROUTES
 var eventRoutes = require('./app/routes/event')(app, express);
-app.use('/', eventRoutes);
+app.use('/api', eventRoutes);
+
+var meRouter = express.Router();
+
+
+
+
 
 // MAIN CATCHCALL ROUTE ---------
 app.get('*', function(req, res) {

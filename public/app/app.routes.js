@@ -20,22 +20,52 @@ angular.module('app.routes', ['ngRoute'])
 		})
 
 
+
+		//Show all users
+		.when('/users', {
+			templateUrl : 'app/components/user/views/all.html',
+				controller : 'userController',
+				controllerAs : 'user'
+		})
+
+		// form to create a new user
+		// same view as EDIT PAGE
+		.when('/users/create', {
+			templateUrl : 'app/components/user/views/single.html',
+				controller : 'userCreateController',
+				controllerAs : 'user'
+		})
+
+		// page to edit a user
+		.when('/users/:user_id', {
+			templateUrl : 'app/components/user/views/single.html',
+				controller : 'userEditController',
+				controllerAs : 'user'
+		})
+
+
 		//paticipant events
 	.when('/events', {
 			templateUrl : 'app/components/participant/views/all.html',
 				controller : 'eventController',
+				controllerAs : 'tevent'
+		})
+
+	.when('/events/create', {
+			templateUrl : 'app/components/participant/views/single.html',
+				controller : 'eventCreateController',
 				controllerAs : 'event'
 		})
 
-	.when('/myevents', {
+	.when('/myevents/:user_id', {
 			templateUrl : 'app/components/participant/views/my.html',
 				controller : 'MyeventController',
 				controllerAs : 'event'
 		})
 
-	.when('/event/:event_id', {
+	.when('/events/:event_id', {
 			templateUrl : 'app/components/participant/views/single.html',
-				controller : 'SingleeventController',
+				controller : 'eventEditController',
 				controllerAs : 'event'
 		})
 

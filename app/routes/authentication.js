@@ -9,6 +9,9 @@ module.exports = function(app, express)
 	// get an instance of the express router
 	var authenticationRouter = express.Router();
 
+	
+
+
 	// Route to authenticate a user
 	authenticationRouter.post('/authenticate', function(req, res)
 	{
@@ -19,7 +22,7 @@ module.exports = function(app, express)
 		User.findOne(
 		{
 			username: req.body.username
-		}).select('password').exec(function(err, user)
+		}).select('_id name username role password').exec(function(err, user)
 		{
 			if(err) throw err;
 
@@ -48,9 +51,13 @@ module.exports = function(app, express)
 				{
 					// If user is found and password is correct
 					// create a token
-					var token = jwt.sign(user, secret, 
-					{
-						expiresIn: 2000
+					var token = jwt.sign({
+					id: user._id,
+					name: user.name,
+					username: user.username,
+					role: user.role
+					}, config.secret, {
+					expiresIn: 1140 // 24 hours
 					});
 
 					// return the information including token as JSOn
@@ -102,6 +109,10 @@ module.exports = function(app, express)
 				message: 'No token provided'
 			});
 		}
+	});
+
+	authenticationRouter.get('/me', function(req, res) {
+		res.send(req.decoded);
 	});
 
 	return authenticationRouter;

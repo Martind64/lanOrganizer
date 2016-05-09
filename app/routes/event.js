@@ -17,6 +17,7 @@ module.exports = function(app, express)
 			pEvent.name			= req.body.name;
 			pEvent.address	 	= req.body.address;
 			pEvent.description 	= req.body.description;
+			pEvent.date 	= req.body.date;
 
 
 			pEvent.save(function(err)
@@ -40,7 +41,7 @@ module.exports = function(app, express)
 		//returning all events for a user
 	eventRouter.route('/events/myevents/:user_id')
 		.get(function(req, res) {
-			Event.find({'user_id' : req.params.user_id}, function(err, events) {
+			MyEvent.find({'user_id' : req.params.user_id}, function(err, events) {
 				if (err) res.send(err);
 
 				res.json(events);
@@ -71,6 +72,7 @@ module.exports = function(app, express)
 				if(req.body.name) pEvent.name = req.body.name;
 				if(req.body.address) pEvent.address = req.body.address;
 				if(req.body.description) pEvent.description = req.body.description;
+				if(req.body.date) pEvent.date = req.body.date;
 
 
 				// save the event
@@ -96,6 +98,24 @@ module.exports = function(app, express)
 			});
 		});
 
+		//sign user up for event
+		eventRouter.route('/events/signup/:event_id/:user_id')
+
+		.post(function(req, res)
+		{
+			var user_to_event			= new MyEvent();
+			user_to_event.user_id		= req.params.user_id;
+			user_to_event.event_id	 	= req.params.event_id;
+			
+
+
+			user_to_event.save(function(err)
+			{
+				if(err) res.send(err);
+				res.json({ message: 'Event Created!'});
+			});
+		})
+		
 
 		return eventRouter;
 

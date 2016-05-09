@@ -1,6 +1,7 @@
 <div class="container">
 	<h3>Events</h3>
-	<table class="table table-striped" ng-show="event.events">
+	<a ng-if="main.user.data.role=='admin'" ng-href="/events/create" class="pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+	<table class="table table-striped" ng-show="tevent.events">
 		<thead>
 			<tr>
 				<th>Name</th>
@@ -12,11 +13,12 @@
 
 
 		<tbody>
-			<tr ng-repeat="event in event.events">
+			<tr ng-repeat="event in tevent.events">
 				<td>{{ event.name }}</td>
-				<td>{{ event.location }}</td>
+				<td>{{ event.address }}</td>
 				<td>{{ event.date }}</td>
-				<td><a ng-href="/event/{{ event._id }}/signup">Sign up</a></td>
+				<td ng-if="main.user.data.role=='user'"><a href="#" ng-click="tevent.Signup(main.user.data.id, event._id)">Sign up</a></td>
+				<td ng-if="main.user.data.role=='admin'"><a ng-href="/events/{{ event._id}}">Edit</a></td>
 			</tr>
 		</tbody>
 
