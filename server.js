@@ -45,6 +45,10 @@ app.use('/api', userRoutes);
 var eventRoutes = require('./app/routes/event')(app, express);
 app.use('/api', eventRoutes);
 
+//SWITCH ROUTES
+var switchRoutes = require('./app/routes/switch')(app, express);
+app.use('/api', switchRoutes);
+
 var meRouter = express.Router();
 
 
