@@ -42,7 +42,7 @@ module.exports = function(app, express)
 		// find the switch with the specified switchid
 		.get(function(req, res)
 		{
-			Switch.findById(req.params.event_id, function(err, sewitch)
+			Switch.findById(req.params.event_id, function(err, eswitch)
 			{
 				if(err) res.send(err);
 
