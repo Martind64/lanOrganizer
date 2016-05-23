@@ -49,6 +49,10 @@ app.use('/api', eventRoutes);
 var switchRoutes = require('./app/routes/switch')(app, express);
 app.use('/api', switchRoutes);
 
+//SWITCH ROUTES
+var powerRoutes = require('./app/routes/power')(app, express);
+app.use('/api', powerRoutes);
+
 var meRouter = express.Router();
 
 
