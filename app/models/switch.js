@@ -6,7 +6,7 @@ var Schema		= mongoose.Schema;
 var SwitchSchema = new Schema({
 	name: String,
 	rangetop: String,
-	Rangebottom: String,
+	rangebottom: String,
 });
 
 

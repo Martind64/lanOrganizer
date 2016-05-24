@@ -69,6 +69,11 @@ angular.module('app.routes', ['ngRoute'])
 				controllerAs : 'event'
 		})
 
+	.when('/event/:event_id', {
+		templateUrl : 'app/components/participant/views/participantSingle.html',
+			controller : 'eventEditController',
+			controllerAs : 'event'
+	})
 
 	//participant profile
 	.when('/profile/:participant_id', {

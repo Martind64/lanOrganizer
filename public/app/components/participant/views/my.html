@@ -13,9 +13,10 @@
 
 		<tbody>
 			<!--onclick="window.location ='/event/{{ event._id }}';" -->
-			<tr ng-repeat="event in event.events" >
+			<tr ng-repeat="event in event.events" ng-click="window.location ='/event/{{ event._id }}';">
 				<td>{{ event.event_id }}</td>
 				<td>{{ event.user_id }}</td>
+				<td><a href="/event/{{ event._id }}">View</a></td>
 			</tr>
 		</tbody>
 
