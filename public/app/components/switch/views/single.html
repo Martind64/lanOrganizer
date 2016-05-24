@@ -1,0 +1,50 @@
+
+<div class="page-header">
+	<button ng-if="switch.type == 'edit'" class="btn btn-danger btn-lg pull-right" id="delBtn" ng-click="switch.deleteSwitch(switch.switchData._id)">Delete</button>
+	<h1 ng-if="switch.type == 'create'">Create Switch</h1>
+	<h1 ng-if="switch.type == 'edit'">Edit Switch</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="switch.saveSwitch()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="switch.switchData.name">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">RangeTop</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="switch.switchData.rangetop">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">RangeBottom</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="switch.switchData.rangebottom">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="switch.type == 'create'">Create Switch</button>
+
+			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="switch.type == 'edit'">Edit Switch</button>
+		</div>
+	</div>
+
+
+</form>
+
+<div class="row show-hide-message" ng-show="switch.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ switch.message }}
+		</div>
+	</div>
+</div>

@@ -27,7 +27,7 @@ angular.module('powerController', ['powerService'])
 
 		vm.type = 'create';
 
-		vm.SavePower = function() {
+		vm.savePower = function() {
 			vm.message = '';
 
 			Power.create(vm.powerData)
@@ -48,7 +48,7 @@ angular.module('powerController', ['powerService'])
 				vm.powerData = data;
 			});
 
-		vm.SavePower = function() {
+		vm.savePower = function() {
 			vm.message = '';
 
 			Power.update($routeParams.power_id, vm.powerData)

@@ -1,0 +1,42 @@
+
+<div class="page-header">
+	<button ng-if="power.type == 'edit'" class="btn btn-danger btn-lg pull-right" id="delBtn" ng-click="power.deletePower(power.powerData._id)">Delete</button>
+	<h1 ng-if="power.type == 'create'">Create Switch</h1>
+	<h1 ng-if="power.type == 'edit'">Edit Switch</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="power.savePower()">
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="power.powerData.name">
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Location</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="power.powerData.location">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-6">
+			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="power.type == 'create'">Create Power</button>
+
+			<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="power.type == 'edit'">Edit Power</button>
+		</div>
+	</div>
+
+
+</form>
+
+<div class="row show-hide-message" ng-show="power.message">
+	<div class="col-sm-6 col-sm-offset-2">
+		<div class="alert alert-info">
+			{{ power.message }}
+		</div>
+	</div>
+</div>

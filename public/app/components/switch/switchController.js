@@ -27,7 +27,7 @@ angular.module('switchController', ['switchService'])
 
 		vm.type = 'create';
 
-		vm.SaveSwitch = function() {
+		vm.saveSwitch = function() {
 			vm.message = '';
 
 			Switch.create(vm.switchData)
@@ -48,7 +48,7 @@ angular.module('switchController', ['switchService'])
 				vm.switchData = data;
 			});
 
-		vm.SaveSwitch = function() {
+		vm.saveSwitch = function() {
 			vm.message = '';
 
 			Switch.update($routeParams.switch_id, vm.switchData)
