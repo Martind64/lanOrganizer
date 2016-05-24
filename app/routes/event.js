@@ -1,6 +1,7 @@
 // require the vent model
 var Event = require('../models/event');
 var MyEvent = require('../models/user_to_event');
+var User = require('../models/user');
 
 module.exports = function(app, express)
 {
@@ -103,18 +104,45 @@ module.exports = function(app, express)
 
 		.post(function(req, res)
 		{
-			var user_to_event			= new MyEvent();
-			user_to_event.user_id		= req.params.user_id;
-			user_to_event.event_id	 	= req.params.event_id;
+			var user;
+			var pevent;
+			var user_to_event = new MyEvent();
+			User.findById(req.params.user_id, function(err, u) {
+				Event.findById(req.params.event_id, function(err, ev) {
+					
+					user_to_event.user_id		= req.params.user_id;
+					user_to_event.event_id	 	= req.params.event_id;
+					user_to_event.user_name 	= u.name;
+					user_to_event.event_name	= ev.name;
+					user_to_event.save(function(err)
+					{
+						if(err) res.send(err);
+						res.json({ message: 'Event Created!'});
+					});
+				});	
+			});	
+			
+
+			
+			//var user_to_event			= new MyEvent();
+			//user_to_event.user_id		= req.params.user_id;
+			//user_to_event.event_id	 	= req.params.event_id;
+			//user_to_event.user_name 	= 
+			//user_to_event.event_name	= "test";
 			
 
 
-			user_to_event.save(function(err)
-			{
-				if(err) res.send(err);
-				res.json({ message: 'Event Created!'});
+			
+		});
+
+		eventRouter.route('/events/participants/:event_id')
+			.get(function(req, res) {
+				MyEvent.find({'event_id' : req.params.event_id}, function(err, participants) {
+					if (err) res.send(err);
+
+					res.json(participants);
+				});
 			});
-		})
 		
 
 		return eventRouter;

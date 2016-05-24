@@ -42,6 +42,10 @@ angular.module('ParticipantsService', [])
 
 		};
 
+		pfactory.getParticipantEvents = function(eventid) {
+			return $http.get('/api/events/participants/' + eventid);
+		};
+
 
 		return pfactory;
 	});

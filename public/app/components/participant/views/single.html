@@ -10,9 +10,8 @@
 	<h1 ng-if="event.type == 'edit'">Edit Event</h1>
 </div>
 
-
-
-<form class="form-horizontal" ng-submit="event.saveEvent()">
+<div class="col-md-6">
+	<form class="form-horizontal" ng-submit="event.saveEvent()">
 	
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Name</label>
@@ -56,6 +55,24 @@
 
 
 </form>
+
+</div>
+
+<div class="col-md-6">
+	<table class="table table-striped">
+		<thead>
+			<th>Participant</th>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="participant in event.participants">
+				<td>{{ participant.user_name }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
 
 <div class="row show-hide-message" ng-show="event.message">
 	<div class="col-sm-6 col-sm-offset-2">
