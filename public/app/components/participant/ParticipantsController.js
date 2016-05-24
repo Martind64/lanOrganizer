@@ -39,10 +39,7 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 			.success(function(data) {
 				vm.eventdata = data;
 			});
-		Pevent.getParticipantEvents($routeParams.event_id)
-			.success(function(data) {
-				vm.participants = data;
-			});
+		
 	})
 
 
@@ -84,6 +81,11 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 		Pevent.get($routeParams.event_id)
 			.success(function(data) {
 				vm.eventData = data;
+			});
+		Pevent.getParticipantEvents($routeParams.event_id)
+			.success(function(data) {
+				//noget med data her --
+				vm.participants = data;
 			});
 
 			// function to save the user
