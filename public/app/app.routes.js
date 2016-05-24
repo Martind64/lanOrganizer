@@ -90,6 +90,12 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs : 'switch'
 	})
 
+	.when('/switch/:switch_id', {
+		templateUrl : 'app/components/switch/views/single.html',
+			controller : 'switchEditController',
+			controllerAs : 'switch'
+	})
+
 
 
 	//power events
@@ -102,6 +108,12 @@ angular.module('app.routes', ['ngRoute'])
 	.when('/power/create', {
 		templateUrl : 'app/components/power/views/single.html',
 			controller : 'powerCreateController',
+			controllerAs : 'power'
+	})
+
+	.when('/power/:power_id', {
+		templateUrl : 'app/components/power/views/single.html',
+			controller : 'powerEditController',
 			controllerAs : 'power'
 	})
 	
