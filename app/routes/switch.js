@@ -26,12 +26,12 @@ module.exports = function(app, express)
 		})
 		.get(function(req, res)
 		{
-			Switch.find(function(err, switchs)
+			Switch.find(function(err, switches)
 			{
 				if(err) res.send(err);
 
 				// return the events
-				res.json(switchs);
+				res.json(switches);
 			});
 		});
 

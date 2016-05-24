@@ -6,6 +6,10 @@ angular.module('LanOrganizer', [
 	'userService',
 	'authService',
 	'userCtrl',
+	'powerController',
+	'powerService',
+	'switchController',
+	'switchService',
 ])
 
 

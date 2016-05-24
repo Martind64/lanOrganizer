@@ -77,6 +77,21 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'participant'
 	})
 
+	//switch events
+	.when('/switch', {
+		templateUrl : 'app/components/switch/views/all.html',
+			controller : 'switchController',
+			controllerAs : 'switch'
+	})
+
+
+
+	//power events
+	.when('/power', {
+		templateUrl : 'app/components/power/views/all.html',
+			controller : 'powerController',
+			controllerAs : 'power'
+	})
 	
 
 	// get rid of the hash in the url

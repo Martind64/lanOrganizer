@@ -1,0 +1,20 @@
+<div class="container">
+	<h3>All Power</h3>
+
+
+	<table class="table table-striped" ng-show="power.powers">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="power in power.powers">
+				<td>{{ power.name }}</td>
+				<td>{{ power.location }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

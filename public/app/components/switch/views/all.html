@@ -1,0 +1,22 @@
+<div class="container">
+	<h3>Switches</h3>
+
+
+	<table class="table table-striped" ng-show="switch.switches">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>RangeTop</th>
+				<th>RangeBottom</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr ng-repeat="switch in switch.switches">
+				<td>{{ switch.name }}</td>
+				<td>{{ switch.rangetop }}</td>
+				<td>{{ switch.rangebottom }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
