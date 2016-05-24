@@ -1,9 +1,16 @@
 
 <div class="page-header">
-	<button ng-if="event.type == 'edit'" class="btn btn-danger btn-lg pull-right" id="delBtn" ng-click="event.deleteEvent(event.eventData._id)">Delete</button>
+	<div ng-if="main.user.data.role=='admin'" class="pull-right">
+	<a class="btn btn-default" href="#" ng-click=""><span class="glyphicon glyphicon-signal"></span></a>
+	<a class="btn btn-default" href="#" ng-click=""><span class="glyphicon glyphicon-flash"></span></a>
+	<a class="btn btn-danger" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+	<!-- <button ng-if="event.type == 'edit'" class="btn btn-danger btn-lg pull-right" id="delBtn" ng-click="event.deleteEvent(event.eventData._id)"><span class="glyphicon glyphicon-remove"></span></button> -->
+</div>
 	<h1 ng-if="event.type == 'create'">Create Event</h1>
 	<h1 ng-if="event.type == 'edit'">Edit Event</h1>
 </div>
+
+
 
 <form class="form-horizontal" ng-submit="event.saveEvent()">
 	
