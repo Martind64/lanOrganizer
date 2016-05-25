@@ -81,6 +81,7 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 		Pevent.get($routeParams.event_id)
 			.success(function(data) {
 				vm.eventData = data;
+				console.log(data);
 			});
 		Pevent.getParticipantEvents($routeParams.event_id)
 			.success(function(data) {
@@ -88,9 +89,28 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 				vm.participants = data;
 			});
 
-			vm.assignIp = function() {
+		Pevent.getipforuser($routeParams.event_id)
+			.success(function(data) {
+				vm.ips = data;
+			});
+
+		Pevent.getpowerforuser($routeParams.event_id)
+			.success(function(data) {
+				vm.powers = data;
+			});
+
+			vm.assignIp = function(eventid) {
 				vm.message= '';
-				Pevent.assignip($routeParams.eventid)
+				console.log('hit outside ' + eventid);
+				Pevent.assignip(eventid)
+					.success(function(data) {
+						console.log('hit inside');
+						vm.message = data.message;
+					});
+			};
+			vm.assignPower = function(eventid) {
+				vm.message= '';
+				Pevent.assignpower(eventid)
 					.success(function(data) {
 						vm.message = data.message;
 					});
@@ -99,12 +119,12 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 			vm.saveEvent = function() {
 				//vm.processing = true;
 				vm.message = '';
-
+				
 				// call the userService function to update
 				Pevent.update($routeParams.event_id, vm.eventData)
 					.success(function(data) {
 						//vm.processing = false;
-
+						
 						// clear the form
 						vm.eventData = {};
 

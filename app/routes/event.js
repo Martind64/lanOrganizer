@@ -5,6 +5,7 @@ var User = require('../models/user');
 var Ip_to_event = require('../models/ip_to_event');
 var Power_to_event = require('../models/power_to_event');
 var Switch = require('../models/switch');
+var Power = require('../models/power');
 
 module.exports = function(app, express)
 {
@@ -150,22 +151,24 @@ module.exports = function(app, express)
 			.post(function(req, res) {
 
 				Event.findById(req.params.event_id, function(err, pevent) {
-
+					
 					Switch.findById(pevent.switch_id, function(err, pswitch) {
+						
 						MyEvent.find({'event_id' : req.params.event_id}, function(err, participants) {
 							if (err) res.send(err);
+							console.log(participants.length);
 							var rangestart = pswitch.rangebottom;
-							for(i=0;participants.length;i++){
+							for(i=0;i < participants.length;i++){
 								var ip = new Ip_to_event();
-								ip.user_id = participants[i]._id;
-								ip.event_id = event_id;
+								ip.user_id = participants[i].user_id;
+								ip.event_id = pevent._id;
 								ip.dns = "Brug googles dns";
 								ip.ip = rangestart;
 								ip.gateway = "192.168.0.1";
 								rangestart ++;
 								ip.save(function(err) {
 									if (err) res.send(err);
-								})
+								});
 							}
 
 							res.json({ message : 'Ip´s assigned!'});
@@ -177,10 +180,62 @@ module.exports = function(app, express)
 				
 			});
 
-		eventRouter.route('/event/assingpower/:event_id')
+		eventRouter.route('/event/assignpower/:event_id')
 			.post(function(req, res) {
+				Event.findById(req.params.event_id, function(err, pevent) {
+					
+					Power.find(function(err, powers) {
 
+						MyEvent.find({'event_id' : req.params.event_id}, function(err, participants) {
+							if (err) rs.send(err);
+
+							
+							for(i=0;i <participants.length;i++){
+								var power = new Power_to_event();
+
+								if (powers[i] == null) {
+									power.power_id = "nill";
+									power.power_location = "nill";
+									power.power_name = "nill";
+								} else {
+									power.power_id = powers[i]._id;
+									power.power_location = powers[i].location;
+									power.power_name = powers[i].name;
+								}
+
+
+								console.log('hit');
+								power.event_id = req.params.event_id;
+								power.user_id = participants[i].user_id;
+								power.save(function(err) {
+									if (err) res.send(err);
+								});
+							}
+
+							res.json({ message : 'Power assigned!'});
+						});
+					});
+
+				});
 			});
+
+			eventRouter.route('/event/power/:event_id')
+				.get(function(req, res) {
+					Power_to_event.find({'event_id' : req.params.event_id }, function(err, powers) {
+						if (err) res.send(err);
+
+						res.json(powers);
+					});
+				});
+
+			eventRouter.route('/event/ip/:event_id')
+				.get(function(req, res) {
+					Ip_to_event.find({'event_id' : req.params.event_id }, function(err, ips) {
+						if (err) res.send(err);
+
+						res.json(ips);
+					});
+				});
 
 		
 		

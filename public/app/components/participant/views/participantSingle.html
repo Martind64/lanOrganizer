@@ -3,14 +3,30 @@
 
 <div class="col-md-6">
 	<h3>Event Information</h3>
-{{ event.eventData.address }}
 	<div>
-		<p>{{ event.eventData.name }}</p>
+		<p class="lead"><b>Name: </b>{{ event.eventData.name }}</p>
+		<p class="lead"><b>Address: </b>{{ event.eventData.address }}</p>
+		<p class="lead"><b>Description: </b>{{ event.eventData.description }}</p>
 	</div>
 </div>
 
 <div class="col-md-6">
 	<h3>Settings Information</h3>
+	<h4>Ip</h4>
+	<div ng-repeat="ip in event.ips">
+		<div ng-if="ip.user_id == main.user.data.id">
+			<p class="lead"><b>Ip ending: </b>{{ ip.ip }}</p>
+			<p class="lead"><b>Gateway: </b>{{ ip.gateway }}</p>
+			<p class="lead"><b>Dns: </b>{{ ip.dns }}</p>
+		</div>	
+	</div>
+	<h4>Power</h4>
+	<div ng-repeat="power in event.powers">
+		<div ng-if="power.user_id == main.user.data.id">
+			<p class="lead"><b>Name: </b>{{ power.power_name }}</p>
+			<p class="lead"><b>Location: </b>{{ power.power_location }}</p>
+		</div>	
+	</div>
 </div>
 
 

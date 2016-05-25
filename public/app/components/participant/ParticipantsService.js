@@ -47,9 +47,20 @@ angular.module('ParticipantsService', [])
 		};
 
 		pfactory.assignip = function(eventid) {
-			return $http.post('api/event/assignip/' + eventid);
+			return $http.post('/api/event/assignip/' + eventid);
 		};
 
+		pfactory.assignpower = function(eventid) {
+			return $http.post('/api/event/assignpower/' + eventid);
+		};
+
+		pfactory.getipforuser = function(eventid) {
+			return $http.get('/api//event/ip/' + eventid);
+		};
+
+		pfactory.getpowerforuser = function(eventid) {
+			return $http.get('/api/event/power/' + eventid);
+		};
 
 		return pfactory;
 	});

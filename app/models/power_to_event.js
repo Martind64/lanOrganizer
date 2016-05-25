@@ -7,6 +7,8 @@ var Power_to_eventSchema = new Schema({
 	event_id: String,
 	user_id: String, 
 	power_id: String,
+	power_location: String,
+	power_name: String,
 });
 
 
