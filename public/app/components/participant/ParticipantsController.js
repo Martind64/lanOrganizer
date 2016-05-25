@@ -50,6 +50,13 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 		// differentiates between create or edit pages
 		vm.type = "create";
 
+		Pevent.getSwitches()
+			.success(function(data) {
+				console.log(data);
+				vm.switches = data;
+			});
+
+
 		// function to create a user
 		vm.saveEvent = function() {
 			//vm.processing = true;

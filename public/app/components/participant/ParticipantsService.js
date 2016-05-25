@@ -10,6 +10,10 @@ angular.module('ParticipantsService', [])
 			return $http.get('/api/events');
 		};
 
+		pfactory.getSwitches = function(){
+			return $http.get('/api/events/switches');
+		};
+
 
 		pfactory.create = function(eventData) {
 			return $http.post('/api/events', eventData);

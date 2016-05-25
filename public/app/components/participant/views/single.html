@@ -43,6 +43,15 @@
 		</div>
 	</div>
 
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Switch</label>
+		<div class="col-sm-6">
+			<select class="form-control" ng-model="event.eventData.switch_id">
+				<option ng-repeat="op in event.switches" value="{{ op._id }}">{{ op.name }}</option>
+			</select>
+		</div>
+	</div>
+
 	
 
 

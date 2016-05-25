@@ -23,6 +23,7 @@ module.exports = function(app, express)
 			pEvent.address	 	= req.body.address;
 			pEvent.description 	= req.body.description;
 			pEvent.date 	= req.body.date;
+			pEvent.switch_id = req.body.siwtch_id;
 
 
 			pEvent.save(function(err)
@@ -40,6 +41,15 @@ module.exports = function(app, express)
 				// return the events
 				res.json(events);
 			});
+		});
+
+	eventRouter.route('/events/switches')
+		.get(function(req, res) {
+			Switch.find(function(err, switches) {
+				if (err) res.send(err);
+
+				res.json(switches);
+			})
 		});
 
 
