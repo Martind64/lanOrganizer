@@ -39,7 +39,7 @@ angular.module('ParticipantsService', [])
 
 		//get information about a participant
 		pfactory.getParticipant = function(userid) {
-
+			return $http.get('/api/users/' + userid);
 		};
 
 		pfactory.getParticipantEvents = function(eventid) {

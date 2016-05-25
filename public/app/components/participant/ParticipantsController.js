@@ -119,7 +119,7 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 
 		Pevent.getParticipant($routeParams.participant_id)
 			.success(function(data) {
-				vm.participant = data;
+				vm.participantData = data;
 			});
 	})
 

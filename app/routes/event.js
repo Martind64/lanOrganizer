@@ -154,14 +154,15 @@ module.exports = function(app, express)
 					Switch.findById(pevent.switch_id, function(err, pswitch) {
 						MyEvent.find({'event_id' : req.params.event_id}, function(err, participants) {
 							if (err) res.send(err);
-
+							var rangestart = pswitch.rangebottom;
 							for(i=0;participants.length;i++){
 								var ip = new Ip_to_event();
 								ip.user_id = participants[i]._id;
 								ip.event_id = event_id;
 								ip.dns = "Brug googles dns";
-								ip.ip = "192.168.0.22";
+								ip.ip = rangestart;
 								ip.gateway = "192.168.0.1";
+								rangestart ++;
 								ip.save(function(err) {
 									if (err) res.send(err);
 								})
@@ -180,6 +181,8 @@ module.exports = function(app, express)
 			.post(function(req, res) {
 
 			});
+
+		
 		
 
 		return eventRouter;
