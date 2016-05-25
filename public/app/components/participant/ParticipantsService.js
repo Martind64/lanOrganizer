@@ -46,6 +46,10 @@ angular.module('ParticipantsService', [])
 			return $http.get('/api/events/participants/' + eventid);
 		};
 
+		pfactory.assignip = function(eventid) {
+			return $http.post('api/event/assignip/' + eventid);
+		};
+
 
 		return pfactory;
 	});

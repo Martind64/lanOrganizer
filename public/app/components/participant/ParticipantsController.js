@@ -88,6 +88,13 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 				vm.participants = data;
 			});
 
+			vm.assignIp = function() {
+				vm.message= '';
+				Pevent.assignip($routeParams.eventid)
+					.success(function(data) {
+						vm.message = data.message;
+					});
+			};
 			// function to save the user
 			vm.saveEvent = function() {
 				//vm.processing = true;

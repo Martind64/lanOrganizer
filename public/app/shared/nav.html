@@ -10,7 +10,7 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a ng-href="/profile/">Profile</a></li>
+				<li><a ng-href="/profile/{{ main.user.data.id }}">Profile</a></li>
 				<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 			</ul>
 		</div>	

@@ -8,6 +8,7 @@ var EventSchema = new Schema({
 	address: String, 
 	description: String,
 	date: String,
+	switch_id: String,
 });
 
 

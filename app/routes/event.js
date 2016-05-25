@@ -2,6 +2,9 @@
 var Event = require('../models/event');
 var MyEvent = require('../models/user_to_event');
 var User = require('../models/user');
+var Ip_to_event = require('../models/ip_to_event');
+var Power_to_event = require('../models/power_to_event');
+var Switch = require('../models/switch');
 
 module.exports = function(app, express)
 {
@@ -104,9 +107,8 @@ module.exports = function(app, express)
 
 		.post(function(req, res)
 		{
-			var user;
-			var pevent;
 			var user_to_event = new MyEvent();
+			
 			User.findById(req.params.user_id, function(err, u) {
 				Event.findById(req.params.event_id, function(err, ev) {
 					
@@ -142,6 +144,41 @@ module.exports = function(app, express)
 
 					res.json(participants);
 				});
+			});
+
+		eventRouter.route('/event/assignip/:event_id/')
+			.post(function(req, res) {
+
+				Event.findById(req.params.event_id, function(err, pevent) {
+
+					Switch.findById(pevent.switch_id, function(err, pswitch) {
+						MyEvent.find({'event_id' : req.params.event_id}, function(err, participants) {
+							if (err) res.send(err);
+
+							for(i=0;participants.length;i++){
+								var ip = new Ip_to_event();
+								ip.user_id = participants[i]._id;
+								ip.event_id = event_id;
+								ip.dns = "Brug googles dns";
+								ip.ip = "192.168.0.22";
+								ip.gateway = "192.168.0.1";
+								ip.save(function(err) {
+									if (err) res.send(err);
+								})
+							}
+
+							res.json({ message : 'Ip´s assigned!'});
+						});
+					});
+
+				});
+
+				
+			});
+
+		eventRouter.route('/event/assingpower/:event_id')
+			.post(function(req, res) {
+
 			});
 		
 
