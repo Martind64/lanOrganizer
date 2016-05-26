@@ -38,10 +38,10 @@ module.exports = function(app, express)
 		// ON routes that end in /switch/switch_id
 		//-----------------------------------------------------
 		powerRouter.route('/power/:power_id')
-		// find the switch with the specified switchid
+		// find the switch with the specified powerid
 		.get(function(req, res)
 		{
-			Power.findById(req.params.event_id, function(err, power)
+			Power.findById(req.params.power_id, function(err, power)
 			{
 				if(err) res.send(err);
 
@@ -49,10 +49,10 @@ module.exports = function(app, express)
 				res.json(power);
 			});
 		})
-		// update the switch with the specified switchid
+		// update the switch with the specified power_id
 		.put(function(req, res)
 		{
-			Power.findById(req.params.event_id, function(err, power)
+			Power.findById(req.params.power_id, function(err, power)
 			{
 				if(err) res.send(err);
 

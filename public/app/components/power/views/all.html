@@ -7,6 +7,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Location</th>
+				<th></th>
 			</tr>
 		</thead>
 
@@ -14,6 +15,7 @@
 			<tr ng-repeat="power in power.powers">
 				<td>{{ power.name }}</td>
 				<td>{{ power.location }}</td>
+				<td><a ng-href="/power/{{ power._id }}">Edit</a></td>
 			</tr>
 		</tbody>
 	</table>

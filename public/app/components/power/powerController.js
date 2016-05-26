@@ -9,15 +9,7 @@ angular.module('powerController', ['powerService'])
 			});
 
 
-		vm.deletePower = function(id) {
-			Power.delete(id)
-				.success(function(data) {
-					Power.all()
-						.success(function(data) {
-							vm.powers = data;
-						});
-				});
-		};
+		
 	})
 
 
@@ -38,7 +30,7 @@ angular.module('powerController', ['powerService'])
 		};
 	})
 
-	.controller('powerEditController', function($routeParams, Power) {
+	.controller('powerEditController', function($routeParams, $location, Power) {
 		var vm = this;
 
 		vm.type = 'edit';
@@ -56,6 +48,13 @@ angular.module('powerController', ['powerService'])
 					vm.powerData = {};
 
 					vm.message = data.message;
+				});
+		};
+
+		vm.deletePower = function(id) {
+			Power.delete(id)
+				.success(function(data) {
+					$location.path('/power/');
 				});
 		};
 	})

@@ -9,15 +9,7 @@ angular.module('switchController', ['switchService'])
 			});
 
 
-		vm.deleteSwitch = function(id) {
-			Switch.delete(id)
-				.success(function(data) {
-					Switch.all()
-						.success(function(data) {
-							vm.switches = data;
-						});
-				});
-		};
+		
 	})
 
 
@@ -38,7 +30,7 @@ angular.module('switchController', ['switchService'])
 		};
 	})
 
-	.controller('switchEditController', function($routeParams, Switch) {
+	.controller('switchEditController', function($routeParams, $location, Switch) {
 		var vm = this;
 
 		vm.type = 'edit';
@@ -56,6 +48,13 @@ angular.module('switchController', ['switchService'])
 					vm.switchData = {};
 
 					vm.message = data.message;
+				});
+		};
+
+		vm.deleteSwitch = function(id) {
+			Switch.delete(id)
+				.success(function(data) {
+					$location.path('/switch/');
 				});
 		};
 	})

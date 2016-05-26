@@ -1,8 +1,8 @@
 
 <div class="page-header">
 	<button ng-if="power.type == 'edit'" class="btn btn-danger btn-lg pull-right" id="delBtn" ng-click="power.deletePower(power.powerData._id)">Delete</button>
-	<h1 ng-if="power.type == 'create'">Create Switch</h1>
-	<h1 ng-if="power.type == 'edit'">Edit Switch</h1>
+	<h1 ng-if="power.type == 'create'">Create Power</h1>
+	<h1 ng-if="power.type == 'edit'">Edit Power</h1>
 </div>
 
 <form class="form-horizontal" ng-submit="power.savePower()">
