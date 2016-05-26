@@ -14,6 +14,10 @@ angular.module('ParticipantsService', [])
 			return $http.get('/api/events/switches');
 		};
 
+		pfactory.deleteEvent = function(eventid){
+			return $http.delete('/api/events/' + eventid);
+		};
+
 
 		pfactory.create = function(eventData) {
 			return $http.post('/api/events', eventData);

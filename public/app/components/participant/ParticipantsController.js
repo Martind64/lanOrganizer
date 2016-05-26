@@ -14,7 +14,7 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 		vm.Signup = function(userid, eventid) {
 			Pevent.signup(userid, eventid)
 				.success(function(data) {
-					$location.path('/MyEvents/' + userid);
+					$location.path('/myyevents/' + userid);
 				});
 		};
 	})
@@ -76,7 +76,7 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 		};
 	})
 
-	.controller('eventEditController', function($routeParams, Pevent) {
+	.controller('eventEditController', function($routeParams, $location, Pevent) {
 		var vm = this;
 
 		//variable to hide/show elements of the view
@@ -105,6 +105,14 @@ angular.module('ParticipantsController', ['ParticipantsService'])
 			.success(function(data) {
 				vm.powers = data;
 			});
+
+			vm.deleteEvent = function(id) {
+				vm.processing = true;
+				Pevent.delete(id)
+					.success(function(data) {
+						$location.path('/events/');
+					});
+			};
 
 			vm.assignIp = function(eventid) {
 				vm.message= '';

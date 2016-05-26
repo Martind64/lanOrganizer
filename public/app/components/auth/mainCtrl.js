@@ -32,7 +32,7 @@ angular.module('mainCtrl', [])
 					//vm.processing = false;
 					//if a user successfully logs in, redirect to events page
 					if (data.success) {
-						$location.path('/users');
+						$location.path('/events');
 					} else
 						vm.error = data.message;
 				});
